@@ -1,0 +1,64 @@
+@import '../../../scss/variables';
+
+
+
+.container {
+
+    .user__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        width: 100%;
+        padding: 0px 10px;
+        .id__container {
+            width: 70px;
+            display: flex;
+            align-items: center;
+
+            p {
+                font-weight: 700;
+                font-family: $header-font;
+                font-size: 0.8rem;
+
+                span {
+                    opacity: 0.6;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .user-data__container {
+            width: 100%;
+
+            .user-name {
+                font-weight: 700;
+            }
+        }
+
+        .user-status__container {
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            .status__icon,
+            .gender__icon {
+                opacity: .7;
+
+            }
+        }
+
+        .user-item__container {
+            p {
+                margin: 3px 0px;
+            }
+
+            padding: 5px 0px;
+        }
+
+        &:nth-child(odd) {
+            background-color: $grey;
+        }
+    }
+}

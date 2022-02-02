@@ -1,0 +1,25 @@
+<div class="container" *ngIf="users">
+    <h1>List of users</h1>
+    <div class="user__container" *ngFor="let user of users.data" >
+        
+        <div class="user-item__container id__container">
+            <p><span>#</span> {{ user.id }}</p>
+        </div>
+
+        <div class="user-item__container user-status__container">
+
+            <fa-icon class="active status__icon fa-xs" *ngIf="user.status==='active'" [icon]="faCircle"></fa-icon>
+            <fa-icon class="inactive status__icon fa-xs" *ngIf="user.status==='inactive'" [icon]="faCircle"></fa-icon>
+
+            <fa-icon class="gender__icon" *ngIf="user.gender==='male'" [icon]="faMars"></fa-icon>
+            <fa-icon class="gender__icon" *ngIf="user.gender==='female'" [icon]="faVenus"></fa-icon>
+
+        </div>
+
+        <div class="user-item__container user-data__container">
+            <p class="user-name">{{ user.name }}</p>
+            <p>{{ user.email }}</p>
+        </div>
+
+    </div>
+</div>

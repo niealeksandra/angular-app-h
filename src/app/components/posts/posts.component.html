@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Posts</h1>
+    <div class="posts__container" *ngIf="posts">
+        <div class="post__item" *ngFor="let post of posts.data">
+            <div class="post-data">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.body }}</p>
+            </div>
+            <div class="comments__container" *ngIf="post.comments">
+                <p class="no-comments__item" *ngIf="!post.comments.data[0]">No comments</p>
+                <div class="comments__item" *ngIf="post.comments.data[0]"> 
+              
+                    <div class="comment__container" [(ngbCollapse)]="!post.show">
+                        <div class="comment__item" *ngFor="let comment of post.comments.data">
+                            <p>{{ comment.name }}</p>
+                            <p>{{ comment.body }}</p>
+                        </div>
+                    </div>
+
+                    <div class="comments__button" (click)="showComments(post.id)">
+                    <p>Comments  <span class="badge badge-pill"> {{ post.comments.data.length }} </span></p>
+                    <fa-icon class="fa-sm" *ngIf="post.show" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon class="fa-sm" *ngIf="!post.show" [icon]="faArrowDown"></fa-icon>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

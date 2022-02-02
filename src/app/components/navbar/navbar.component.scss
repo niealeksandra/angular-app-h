@@ -1,0 +1,16 @@
+@import '../../../scss/variables';
+
+
+.navbar {
+    background-color: $grey;
+    font-family: $header-font;
+
+    .menu__button {
+        border-color: transparent;
+    }
+
+    .brand__item {
+        padding-right: 2rem;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Todos</h1>
+    <div class="row" *ngIf="todos">
+        <div class="todo__container col-md-6" *ngFor="let todo of todos.data">
+            <div class="todo__item" [ngClass]="todo.status == 'completed' ? 'done' : ''">
+                <p class="todo-date">{{ todo.due_on | date:'medium' }}</p>
+                <p class="todo-title">{{ todo.title }}</p>
+            </div>
+        </div>
+    </div>
+</div>

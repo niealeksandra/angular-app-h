@@ -1,0 +1,28 @@
+@import '../../../scss/variables';
+
+.container {
+    div {
+        .todo__container {
+            margin: 10px 0px;
+            
+            .todo__item {
+                border: 2px solid $grey;
+                padding: 10px;
+                height: 100%;
+                .todo-date {
+                    font-family: $header-font;
+                    font-size: .8rem;
+                }
+                .todo-title {
+                    margin: 0;
+
+                }
+            }
+
+            .done {
+                background-color: $grey;
+                opacity: .8;
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&family=Poppins:wght@300;600&display=swap');
+@import './variables';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $header-font;
+    font-size: 1rem;
+}
+
+p {
+    font-family: $p-font;
+}
+
+.inactive {
+    color: $red;
+}
+
+.active {
+    color: $green
+}
+
+.container {
+
+    h1 {
+        font-size: 1.2rem;
+        text-align: center;
+        border-bottom: 2px solid $grey;
+        padding-bottom: 5px;
+    }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
