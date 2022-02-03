@@ -47,6 +47,7 @@ $angular-app-hawatel-theme: mat.define-light-theme((
 body {
     font-family: $header-font;
     font-size: 1rem;
+    position: relative;
 }
 
 p {
