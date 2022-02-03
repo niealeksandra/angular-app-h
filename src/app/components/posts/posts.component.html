@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+    <app-pagination *ngIf="posts" [item]="posts.meta" (pageEvent)="changePage($event)"></app-pagination>
 </div>
 
 

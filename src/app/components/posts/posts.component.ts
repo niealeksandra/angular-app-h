@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserPostsService } from 'src/app/services/user-posts.service';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -10,9 +10,14 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 })
 export class PostsComponent implements OnInit {
 
+  @Output() item: Object = []
+  
   posts: any;
   comments: any;
   comment: any;
+
+  // page counter
+  page: number = 1;
 
   // Collapse comments
   public isCollapsed = true;
@@ -24,12 +29,12 @@ export class PostsComponent implements OnInit {
   constructor( private userPostsService: UserPostsService) { }
 
   ngOnInit(): void {
-    this.getPosts()
+    this.getPosts(this.page.toString())
   }
 
     // get posts from service
-    getPosts() {
-      this.userPostsService.getPosts().subscribe((data) => {
+    getPosts(p: string) {
+      this.userPostsService.getPosts(p).subscribe((data) => {
         this.posts = data
         this.getComm(this.posts.data)
       })
@@ -40,7 +45,7 @@ export class PostsComponent implements OnInit {
       for (let i = 0; i < data.length; i++) {
         this.getComments(data[i].id, i)
       }
-      console.log(this.posts)
+      // console.log(this.posts)
     }
 
    // get comments from service and assign it for every posts
@@ -62,6 +67,18 @@ export class PostsComponent implements OnInit {
         this.posts.data[index].show = true
       } else {
         this.posts.data[index].show = true
+      }
+    }
+
+        //change page 
+    changePage(e: any) {
+      if (e === 'next' && this.page < this.posts.meta.pagination.pages) {
+        this.page++
+        this.getPosts(this.page.toString())
+      }
+      if (e === 'prev' && this.page > 1) {
+        this.page--
+        this.getPosts(this.page.toString())
       }
     }
 

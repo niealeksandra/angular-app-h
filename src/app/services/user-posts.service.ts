@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class UserPostsService {
 
-  private urlPosts: string = 'https://gorest.co.in/public/v1/posts';
+  private urlPosts: string = 'https://gorest.co.in/public/v1/posts?page=';
   private urlComments: string = 'https://gorest.co.in/public/v1/comments?post_id='
 
   private httpOptions:object = {
@@ -20,8 +20,8 @@ export class UserPostsService {
   constructor(private http: HttpClient) { }
 
   // get data from API
-  getPosts() {
-    return this.http.get<Object>(this.urlPosts, this.httpOptions)
+  getPosts(p: string) {
+    return this.http.get<Object>((this.urlPosts + p), this.httpOptions)
   }
 
   getComments(id: string) {

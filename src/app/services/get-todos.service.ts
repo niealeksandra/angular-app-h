@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class GetTodosService {
 
-  private urlTodos: string = 'https://gorest.co.in/public/v1/todos';
+  private urlTodos: string = 'https://gorest.co.in/public/v1/todos?page=';
 
   private httpOptions:object = {
     headers: new HttpHeaders({ 
@@ -17,8 +17,8 @@ export class GetTodosService {
   constructor(private http: HttpClient) { }
 
   // get data from API
-  getTodos() {
-    return this.http.get<Object>(this.urlTodos, this.httpOptions)
+  getTodos(p: string) {
+    return this.http.get<Object>((this.urlTodos + p), this.httpOptions)
   }
 
 }

@@ -10,13 +10,15 @@ import { PostsComponent } from './components/posts/posts.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { InterceptorService } from './services/interceptor.service';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { LoaderComponent } from './components/loader/loader.component';
-import { InterceptorService } from './services/interceptor.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { InterceptorService } from './services/interceptor.service';
     FooterComponent,
     ContentComponent,
     LoaderComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { InterceptorService } from './services/interceptor.service';
     FontAwesomeModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, 

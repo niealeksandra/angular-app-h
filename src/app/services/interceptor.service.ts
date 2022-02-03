@@ -18,6 +18,8 @@ export class InterceptorService implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
 
       this.counter++;
+
+      // show loader
       this.loaderService.isLoading.next(true)
       
     return next.handle(req).pipe(

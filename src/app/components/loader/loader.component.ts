@@ -16,7 +16,7 @@ export class LoaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // get data for load from service (this make no error on console)
+    // get data for load from service (this make no Error: NG0100 on console)
     this.loaderService.loading$.subscribe((val) => {
       this.load = val;
       this.cdr.detectChanges()

@@ -8,4 +8,5 @@
             </div>
         </div>
     </div>
+    <app-pagination *ngIf="todos" [item]="todos.meta" (pageEvent)="changePage($event)"></app-pagination>
 </div>

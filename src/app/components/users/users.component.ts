@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { faMars, faVenus, faCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,25 +9,41 @@ import { faMars, faVenus, faCircle } from '@fortawesome/free-solid-svg-icons'
 })
 export class UsersComponent implements OnInit {
 
+  @Output() item: Object = []
+
   users: any;
+
+    // page counter
+  page: number = 1;
 
   // Icons
   faMars = faMars;
   faVenus = faVenus;
   faCircle = faCircle;
 
-  constructor( private userDataService: UserDataService) { }
+  constructor( private userDataService: UserDataService ) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsers(this.page.toString());
   }
 
   // get users from service
-  getUsers() {
-    this.userDataService.getUsers().subscribe((data) => {
+  getUsers(p: string) {
+    this.userDataService.getUsers(p).subscribe((data) => {
       this.users = data
-      console.log(this.users)
     })
+  }
+
+  //change page 
+  changePage(e: any) {
+    if (e === 'next' && this.page < this.users.meta.pagination.pages) {
+      this.page++
+      this.getUsers(this.page.toString())
+    }
+    if (e === 'prev' && this.page > 1) {
+      this.page--
+      this.getUsers(this.page.toString())
+    }
   }
 
 }

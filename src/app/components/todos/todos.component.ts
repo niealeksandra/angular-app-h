@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { GetTodosService } from 'src/app/services/get-todos.service';
 
 @Component({
@@ -8,20 +8,36 @@ import { GetTodosService } from 'src/app/services/get-todos.service';
 })
 export class TodosComponent implements OnInit {
 
+  @Output() item: Object = []
+  
   todos: any;
+
+  // page counter
+  page: number = 1;
 
   constructor( private getTodosService: GetTodosService) { }
 
   ngOnInit(): void {
-    this.getTodos()
+    this.getTodos(this.page.toString())
   }
 
   // get todos from service
-  getTodos() {
-    this.getTodosService.getTodos().subscribe((data) => {
+  getTodos(p: string) {
+    this.getTodosService.getTodos(p).subscribe((data) => {
       this.todos = data
-      console.log('toto', this.todos)
     })
+  }
+
+  //change page 
+  changePage(e: any) {
+    if (e === 'next' && this.page < this.todos.meta.pagination.pages) {
+      this.page++
+      this.getTodos(this.page.toString())
+    }
+    if (e === 'prev' && this.page > 1) {
+      this.page--
+      this.getTodos(this.page.toString())
+    }
   }
 
 }

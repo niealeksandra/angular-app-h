@@ -1,0 +1,40 @@
+@import '../../../scss/variables';
+
+
+.user--paginator {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+    border-top: 2px solid $grey;
+    border-bottom: 2px solid $grey;
+    padding: 10px 0px;
+
+    p.page__item {
+        font-size: .8rem;
+        margin-bottom: 0;
+        padding: 5px;
+        font-family: $p-font;
+    }
+
+    p.page__button {
+        border: none;
+        background-color: $grey;
+        border-radius: 3px;
+        padding: 5px 10px;
+        font-size: .8rem;
+        font-family: $p-font;
+        cursor: pointer;
+        margin-bottom: 0;
+
+        fa-icon {
+            padding: 5px;
+        }
+    }
+
+    p.inactive {
+        color: $dark-grey;
+        cursor: default;
+    }
+
+}
