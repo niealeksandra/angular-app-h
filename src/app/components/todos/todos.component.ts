@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 import { GetTodosService } from 'src/app/services/get-todos.service';
 
 @Component({
@@ -15,16 +16,29 @@ export class TodosComponent implements OnInit {
   // page counter
   page: number = 1;
 
-  constructor( private getTodosService: GetTodosService) { }
+  constructor( 
+    private getTodosService: GetTodosService,
+    private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
-    this.getTodos(this.page.toString())
+
+    // check if todos are on DataSharingService or save data to service
+    this.dataSharingService.todos$.subscribe( value => {
+      this.todos = value
+          if (this.todos.length == 0) {
+            this.getTodos(this.page.toString())
+          }
+    });
+
+    // this.getTodos(this.page.toString())
   }
 
   // get todos from service
   getTodos(p: string) {
     this.getTodosService.getTodos(p).subscribe((data) => {
       this.todos = data
+      //save it to sharing service
+      this.dataSharingService.isTodos.next(this.todos);
     })
   }
 

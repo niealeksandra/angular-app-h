@@ -1,4 +1,4 @@
-<div class="user--paginator">
+<div class="user--paginator" *ngIf="item">
     <p class="previous__button page__button" (click)="changePage('prev')" [ngClass]="item.pagination.page === 1 ? 'inactive' : ''"><fa-icon [icon]="faAngleLeft"></fa-icon>previous page</p>
     <p class="page__item" *ngIf="item">page {{ item.pagination.page }} of {{ item.pagination.pages }}</p>
     <p class="next__button page__button" (click)="changePage('next')" [ngClass]="item.pagination.page === item.pagination.pages ? 'inactive' : ''">next page<fa-icon [icon]="faAngleRight"></fa-icon></p>

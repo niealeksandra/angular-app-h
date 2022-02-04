@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { UserPostsService } from 'src/app/services/user-posts.service';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 
 @Component({
@@ -26,10 +27,19 @@ export class PostsComponent implements OnInit {
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
 
-  constructor( private userPostsService: UserPostsService) { }
+  constructor( 
+    private userPostsService: UserPostsService,
+    private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
-    this.getPosts(this.page.toString())
+    // check if posts are on DataSharingService or save data to service
+    this.dataSharingService.posts$.subscribe( value => {
+      this.posts = value
+        if (this.posts.length == 0) {
+          this.getPosts(this.page.toString());
+        }
+    });
+    // this.getPosts(this.page.toString())
   }
 
     // get posts from service
@@ -37,6 +47,8 @@ export class PostsComponent implements OnInit {
       this.userPostsService.getPosts(p).subscribe((data) => {
         this.posts = data
         this.getComm(this.posts.data)
+        //save it to sharing service
+        this.dataSharingService.isPosts.next(this.posts);
       })
     }
 
@@ -45,7 +57,6 @@ export class PostsComponent implements OnInit {
       for (let i = 0; i < data.length; i++) {
         this.getComments(data[i].id, i)
       }
-      // console.log(this.posts)
     }
 
    // get comments from service and assign it for every posts
