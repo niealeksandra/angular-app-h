@@ -27,6 +27,9 @@ export class TodosComponent implements OnInit {
       this.todos = value
           if (this.todos.length == 0) {
             this.getTodos(this.page.toString())
+          } else {
+            //set page from server
+            this.page = this.todos.meta.pagination.page
           }
     });
 
@@ -37,6 +40,8 @@ export class TodosComponent implements OnInit {
   getTodos(p: string) {
     this.getTodosService.getTodos(p).subscribe((data) => {
       this.todos = data
+      //set page from data
+      this.page = this.todos.meta.pagination.page
       //save it to sharing service
       this.dataSharingService.isTodos.next(this.todos);
     })

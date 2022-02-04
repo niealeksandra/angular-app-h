@@ -37,6 +37,9 @@ export class PostsComponent implements OnInit {
       this.posts = value
         if (this.posts.length == 0) {
           this.getPosts(this.page.toString());
+        } else {
+          //set page from server
+          this.page = this.posts.meta.pagination.page
         }
     });
     // this.getPosts(this.page.toString())
@@ -47,6 +50,8 @@ export class PostsComponent implements OnInit {
       this.userPostsService.getPosts(p).subscribe((data) => {
         this.posts = data
         this.getComm(this.posts.data)
+        //set page from data
+        this.page = this.posts.meta.pagination.page
         //save it to sharing service
         this.dataSharingService.isPosts.next(this.posts);
       })

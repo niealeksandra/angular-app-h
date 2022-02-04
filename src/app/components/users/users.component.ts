@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
 
   users: any;
 
-    // page counter
+  // page counter
   page: number = 1;
 
   // Icons
@@ -31,8 +31,12 @@ export class UsersComponent implements OnInit {
   // check if users are on DataSharingService or save data to service
     this.dataSharingService.users$.subscribe( value => {
       this.users = value
+
         if (this.users.length == 0) {
           this.getUsers(this.page.toString());
+        } else {
+          //set page from server
+          this.page = this.users.meta.pagination.page
         }
     });
     // this.getUsers(this.page.toString());
@@ -42,6 +46,8 @@ export class UsersComponent implements OnInit {
   getUsers(p: string) {
     this.userDataService.getUsers(p).subscribe( data => {
       this.users = data
+      //set page from data
+      this.page = this.users.meta.pagination.page
       //save it to sharing service
       this.dataSharingService.isUsers.next(this.users);
     })
