@@ -5,9 +5,9 @@ import { TodosComponent } from './components/todos/todos.component';
 import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
-  {path: '/users', component: UsersComponent},
-  {path: '/posts', component: PostsComponent},
-  {path: '/todos', component: TodosComponent},
+  {path: 'users', component: UsersComponent},
+  {path: 'posts', component: PostsComponent},
+  {path: 'todos', component: TodosComponent},
   {path: '', redirectTo: '/users', pathMatch: 'full'}
 ];
 
